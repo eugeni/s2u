@@ -40,6 +40,7 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Aug 25 2004 Frederic Lepied <flepied@mandrakesoft.com> 0.3-1mdk
 - don't put noreplace on these scripts
 - changes in cvs
+- use $DISPLAY in temp filename
 
 * Wed Aug 25 2004 Götz Waschk <waschk@linux-mandrake.com> 0.2-2mdk
 - mark config files
