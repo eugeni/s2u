@@ -36,6 +36,9 @@
  *
  **************************************************************************/
 
+static const char rcs_id[] = "$Id$";
+static const char compile_id[] = "$Compile: " __FILE__ " " __DATE__ " " __TIME__ " $";
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
