@@ -1,6 +1,15 @@
+/*===========================================================================
+ * Project         : Mandrakelinux
+ * Module          : s2u
+ * File            : s2u.c
+ * Version         : $Id$
+ * Authors         : Stew Benedict and Frederic Lepied
+ * Created On      : Mon Aug  2 08:28:19 2004
+ * Purpose         : read dbus messages addressed to the user and take
+ *                 appropriate actions.
+ *===========================================================================*/
+
 /***************************************************************************
- *
- * s2u.c : Mandrakesoft messaging service
  *
  * Copyright (C) 2004 Mandrakesoft
  * Stew Benedict, <sbenedict@mandrakesoft.com>
@@ -51,14 +60,14 @@ static gchar *cookie = NULL;
 static void
 usage ()
 {
-	fprintf (stderr, "\n" "usage : drakservice [--daemon=yes|no] [--help]\n");
+	fprintf (stderr, "\n" "usage : s2u [--daemon=yes|no] [--help]\n");
 	fprintf (stderr,
 		 "\n"
 		 "        --daemon=yes|no    Become a daemon\n"
 		 "        --help             Show this information and exit\n"
 		 "\n"
-		 "drakservice monitors messages through D-BUS,\n"
-		 "passing them on to the user.\n");
+		 "s2u monitors messages through D-BUS,\n"
+		 "taking appropraite actions.\n");
 }
 
 
@@ -361,3 +370,11 @@ main (int argc, char *argv[])
 
 	return 0;
 }
+
+/*
+ * Local variables:
+ * mode: c
+ * End:
+ *
+ * s2u.c ends here
+ */
