@@ -10,7 +10,7 @@
 #                 running X11 dbus session.
 #---------------------------------------------------------------
 
-for f in `ls /var/tmp/dbus-xsession* 2> /dev/null`; do
+for f in `ls /tmp/dbus-*-xsession* 2> /dev/null`; do
     . $f
     dbus-send --type=method_call --dest=com.mandrakesoft.user.message /com/mandrakesoft/user com.mandrakesoft.user.message string:"Hostname: $1" &
 done
