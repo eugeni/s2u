@@ -1,6 +1,6 @@
 Summary: System to user tools
 Name: s2u
-Version: 0.4
+Version: 0.5
 Release: 1mdk
 URL: http://www.mandrakelinux.com/
 Source0: %{name}-%{version}.tar.bz2
@@ -33,10 +33,15 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/s2u
 %_sysconfdir/X11/xinit.d/s2u.sh
 %_sysconfdir/sysconfig/network-scripts/hostname.d/s2u
+%config(noreplace) %_sysconfdir/dbus-1/system.d/*.conf
 
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Mon Mar 07 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-1mdk 
+- Release 0.5 :
+ no longer use session bus, use system bus instead (fix Mdk bug #13166)
+
 * Mon Oct 18 2004 Gwenole Beauchesne <gbeauchesne@mandrakesoft.com> 0.4-1mdk
 - lib64 fixes
 

@@ -13,7 +13,7 @@ RELEASE:=$(shell rpm -q --qf %{RELEASE} --specfile $(PACKAGE).spec)
 TAG := $(shell echo "V$(VERSION)_$(RELEASE)" | tr -- '-.' '__')
 
 FILES = Makefile README hostname-post s2u.c s2u.sh s2u.spec \
- AUTHORS LICENSE README ChangeLog
+ AUTHORS LICENSE README ChangeLog s2u.conf
 
 DEFS = -DDBUS_API_SUBJECT_TO_CHANGE=1
 CC = gcc
@@ -41,6 +41,9 @@ install:
 	install s2u $(DESTDIR)/usr/bin
 	install -d $(DESTDIR)/etc/sysconfig/network-scripts/hostname.d
 	install hostname-post $(DESTDIR)/etc/sysconfig/network-scripts/hostname.d/s2u
+	install -d $(DESTDIR)/etc/dbus-1/system.d
+	install s2u.conf $(DESTDIR)/etc/dbus-1/system.d
+
 # rules to build a test rpm
 
 localrpm: localdist buildrpm

@@ -64,8 +64,8 @@ static gchar *cookie = NULL;
 static void
 usage ()
 {
-	fprintf (stderr, "\n" "usage : s2u [--daemon=yes|no] [--help]\n");
-	fprintf (stderr,
+	g_printerr ("\n" "usage : s2u [--daemon=yes|no] [--help]\n");
+	g_printerr (
 		 "\n"
 		 "        --daemon=yes|no    Become a daemon\n"
 		 "        --help             Show this information and exit\n"
@@ -84,59 +84,8 @@ static char *opt_run_as = NULL;
 static void
 die (const char *message)
 {
-  fprintf (stderr, "*** %s", message);
+  g_printerr ("*** %s", message);
   exit (1);
-}
-
-static int
-drak_echo_message (DBusConnection * connection,
-	      DBusMessage * message)
-{
-  DBusError error;
-  DBusMessage *reply;
-  char *s;
-
-  dbus_error_init (&error);
-  
-  if (!dbus_message_get_args (message,
-                              &error,
-                              DBUS_TYPE_STRING, &s,
-                              DBUS_TYPE_INVALID))
-    {
-      reply = dbus_message_new_error (message,
-                                      error.name,
-                                      error.message);
-
-      if (reply == NULL)
-        die ("No memory\n");
-
-      if (!dbus_connection_send (connection, reply, NULL))
-        die ("No memory\n");
-
-      dbus_message_unref (reply);
-
-      return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
-    }
-
-  reply = dbus_message_new_method_return (message);
-  if (reply == NULL)
-    die ("No memory\n");
-  
-  if (!dbus_message_append_args (reply,
-                                 DBUS_TYPE_STRING, s,
-                                 DBUS_TYPE_INVALID))
-    die ("No memory");
-  
-  if (!dbus_connection_send (connection, reply, NULL))
-    die ("No memory\n");
-
-  fprintf (stderr, "Mandrakesoft_user_message: %s\n", s);
-  
-  dbus_free (s);
-  
-  dbus_message_unref (reply);
-    
-  return DBUS_HANDLER_RESULT_HANDLED;
 }
 
 /** Message handler for method invocations. All invocations on any object
@@ -147,10 +96,12 @@ drak_echo_message (DBusConnection * connection,
  *  @param  user_data           User data
  *  @return                     What to do with the message
  */
+
 static DBusHandlerResult
 filter_function (DBusConnection * connection,
 		 DBusMessage * message, void *user_data)
 {
+
 /*
     INFO (("obj_path=%s interface=%s method=%s", 
     dbus_message_get_path(message), 
@@ -159,7 +110,7 @@ filter_function (DBusConnection * connection,
 */
 
 	/* message, interface, method */ 
-	if (dbus_message_is_method_call (message,
+	if (dbus_message_is_signal (message,
 					 "com.mandrakesoft.user",
 					 "message") &&
 	    strcmp (dbus_message_get_path (message),
@@ -177,55 +128,41 @@ filter_function (DBusConnection * connection,
 	  args[2] = getenv("DISPLAY");
 	  args[4] = cookie;
 
-	  printf("setting cookie to %s\n", cookie);
+	  g_print("setting cookie to %s\n", cookie);
 	  
 	  g_spawn_async("/", args, NULL, 0, NULL, NULL, NULL, NULL);
 
-	  return drak_echo_message (connection, message);
+	  return DBUS_HANDLER_RESULT_HANDLED;
 	} else
 		return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
 
 
-DBusConnection *
+static void
 service_dbus_init (void)
 {
-	DBusError dbus_error;
+	GError *error = NULL;
 
-	dbus_connection_set_change_sigpipe (TRUE);
-
-	dbus_error_init (&dbus_error);
-	dbus_connection = dbus_bus_get (DBUS_BUS_SESSION, &dbus_error);
+	dbus_connection = dbus_g_connection_get_connection (dbus_g_bus_get (DBUS_BUS_SYSTEM, &error));
 	if (dbus_connection == NULL) {
-		printf("dbus_bus_get(): %s", dbus_error.message);
+		g_printerr ("dbus_bus_get(): %s", error->message);
 		exit (1);
 	}
 
-	dbus_connection_setup_with_g_main (dbus_connection, NULL);
+         dbus_bus_add_match (dbus_connection,
+                             "type='signal',"
+                             "interface='com.mandrakesoft.user'",
+				NULL);
 
-	/* service, object, interface, member */
-	dbus_message_new_method_call ("com.mandrakesoft.user.message", "/com/mandrakesoft/user",
-                                                "com.mandrakesoft.user",
-                                                "message");
- 
-	dbus_bus_acquire_service (dbus_connection, "com.mandrakesoft.user.message",
-				  0, &dbus_error);
-	if (dbus_error_is_set (&dbus_error)) {
-		printf("dbus_bus_acquire_service(): %s",
-		       dbus_error.message);
-		exit (1);
-	}
 
 	dbus_connection_add_filter (dbus_connection, filter_function, NULL,
 				    NULL);
 
-	return dbus_connection;
 }
 
 int
 main (int argc, char *argv[])
 {
-	DBusConnection *dbus_connection;
 	GMainLoop *loop;
 	gchar* args[] = 
 	  {
@@ -300,14 +237,14 @@ main (int argc, char *argv[])
 		int dev_null_fd;
 
 		if (chdir ("/") < 0) {
-			printf("Could not chdir to /, errno=%d", errno);
+			g_printerr ("Could not chdir to /, errno=%d", errno);
 			return 1;
 		}
 
 		child_pid = fork ();
 		switch (child_pid) {
 		case -1:
-			printf("Cannot fork(), errno=%d", errno);
+			g_printerr ("Cannot fork(), errno=%d", errno);
 			break;
 
 		case 0:
@@ -342,7 +279,7 @@ main (int argc, char *argv[])
 
 
 		if ((pw = getpwnam (opt_run_as)) == NULL) {
-			printf("Could not lookup user %s, errno=%d",
+			g_printerr ("Could not lookup user %s, errno=%d",
 				    opt_run_as, errno);
 			exit (1);
 		}
@@ -351,12 +288,12 @@ main (int argc, char *argv[])
 		gid = pw->pw_gid;
 
 		if (setgid (gid) < 0) {
-			printf("Failed to set GID to %d, errno=%d", gid, errno);
+			g_printerr("Failed to set GID to %d, errno=%d", gid, errno);
 			exit (1);
 		}
 
 		if (setuid (uid) < 0) {
-			printf("Failed to set UID to %d, errno=%d", uid, errno);
+			g_printerr ("Failed to set UID to %d, errno=%d", uid, errno);
 			exit (1);
 		}
 
@@ -364,10 +301,10 @@ main (int argc, char *argv[])
 
 	g_type_init ();
 
-	/* set up the dbus services */
-	dbus_connection = service_dbus_init ();
-
 	loop = g_main_loop_new (NULL, FALSE);
+
+	/* set up the dbus services */
+	service_dbus_init ();
 
 	/* run the main loop and serve clients */
 	g_main_loop_run (loop);
