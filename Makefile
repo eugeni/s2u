@@ -42,7 +42,7 @@ install:
 	install -d $(DESTDIR)/etc/sysconfig/network-scripts/hostname.d
 	install hostname-post $(DESTDIR)/etc/sysconfig/network-scripts/hostname.d/s2u
 	install -d $(DESTDIR)/etc/dbus-1/system.d
-	install s2u.conf $(DESTDIR)/etc/dbus-1/system.d
+	install -m 644 s2u.conf $(DESTDIR)/etc/dbus-1/system.d
 
 # rules to build a test rpm
 
