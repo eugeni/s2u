@@ -1,3 +1,12 @@
+2004-08-18 04:56  Frederic Lepied <flepied@mandrakesoft.com>
+
+	* s2u.spec: 0.2-1mdk
+
+2004-08-18 04:56  Frederic Lepied <flepied@mandrakesoft.com>
+
+	* hostname-post, s2u.sh: put session file in
+	  /tmp/dbus-$USER-xsession$CURR_DISPLAY
+
 2004-08-02 01:44  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.spec: 0.1-1mdk
