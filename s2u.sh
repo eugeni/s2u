@@ -11,11 +11,11 @@
 #             attache itself to.
 #---------------------------------------------------------------
 
+CURR_DISPLAY=`LC_ALL=C xdpyinfo | grep 'display' | awk '{print $4}'`
+
 f="/tmp/dbus-$USER-xsession$CURR_DISPLAY"
 
 vars() {
-    CURR_DISPLAY=`LC_ALL=C xdpyinfo | grep 'display' | awk '{print $4}'`
-
     if [ -f "$f" -a -O "$f" ]; then
 	. "$f"
     fi
