@@ -134,8 +134,18 @@ filter_function (DBusConnection * connection,
 	  g_spawn_async("/", args, NULL, 0, NULL, NULL, NULL, NULL);
 
 	  return DBUS_HANDLER_RESULT_HANDLED;
-	} else
+	} else { 
+	    if (dbus_message_is_signal (message,
+					 "com.mandrakesoft.user",
+					 "updatemenu")) {
+
+	  g_spawn_command_line_async("/etc/X11/xinit.d/menu", NULL);
+
+	  return DBUS_HANDLER_RESULT_HANDLED;
+	    }
+	else
 		return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+	}
 }
 
 

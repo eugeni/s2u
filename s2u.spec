@@ -1,7 +1,7 @@
 Summary: System to user tools
 Name: s2u
 Version: 0.5
-Release: 2mdk
+Release: 3mdk
 URL: http://www.mandrakelinux.com/
 Source0: %{name}-%{version}.tar.bz2
 License: GPL
@@ -39,6 +39,9 @@ rm -rf $RPM_BUILD_ROOT
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Wed Mar 09 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-3mdk 
+- add new signal to start update-menus if requested by system
+
 * Tue Mar 08 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-2mdk 
 - connect to X server, so s2u exits when X exits
 
