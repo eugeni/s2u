@@ -1,0 +1,10 @@
+This tool is used to send messages between the system and users'
+accounts.
+
+For each X11 session a small program called s2u is launched under an
+X11 dbus session (using existing one if possible). The s2u program
+waits then for dbus messages to take the appropriate actions. The
+implemented actions are:
+
+ o react to hostname changes to continue to have a working X11 session.
+ 

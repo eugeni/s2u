@@ -1,0 +1,18 @@
+#!/bin/sh
+#---------------------------------------------------------------
+# Project         : Mandrakelinux
+# Module          : s2u
+# File            : hostname-post
+# Version         : $Id$
+# Author          : Frederic Lepied
+# Created On      : Tue Jul  6 16:10:03 2004
+# Purpose         : send a dbus message on hostname change to all
+#                 running X11 dbus session.
+#---------------------------------------------------------------
+
+for f in `ls /var/tmp/dbus-xsession* 2> /dev/null`; do
+    . $f
+    dbus-send --type=method_call --dest=com.mandrakesoft.user.message /com/mandrakesoft/user com.mandrakesoft.user.message string:"Hostname: $1" &
+done
+
+# hostname-post ends here
