@@ -1,3 +1,7 @@
+2005-03-08 17:22  Frederic Crozat <fcrozat@mandrakesoft.com>
+
+	* Makefile, s2u.c, s2u.spec: Connect to X so s2u exits when X exit
+
 2005-03-07 17:11  Frederic Crozat <fcrozat@mandrakesoft.com>
 
 	* hostname-post: Fix recipient
