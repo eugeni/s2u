@@ -1,3 +1,11 @@
+2004-08-02 01:44  Frederic Lepied <flepied@mandrakesoft.com>
+
+	* s2u.spec: 0.1-1mdk
+
+2004-08-02 01:44  Frederic Lepied <flepied@mandrakesoft.com>
+
+	* Makefile: network-script => network-scripts
+
 2004-08-02 01:29  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* .cvsignore: first version
