@@ -1,13 +1,13 @@
 Summary: System to user tools
 Name: s2u
-Version: 0.2
+Version: 0.3
 Release: 1mdk
 URL: http://www.mandrakelinux.com/
 Source0: %{name}-%{version}.tar.bz2
 License: GPL
 Group: Graphical desktop/Other
 BuildRoot: %{_tmppath}/%{name}-buildroot
-Prefix: %{_prefix}
+BuildRequires: dbus-devel
 Requires: dbus-x11 dbus
 Requires: initscripts >= 7.06-52mdk
 
@@ -31,14 +31,29 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc ChangeLog README AUTHORS LICENSE
 %_bindir/s2u
-/etc/X11/xinit.d/s2u.sh
-/etc/sysconfig/network-scripts/hostname.d/s2u
+%_sysconfdir/X11/xinit.d/s2u.sh
+%_sysconfdir/sysconfig/network-scripts/hostname.d/s2u
+
+# MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Wed Aug 25 2004 Frederic Lepied <flepied@mandrakesoft.com> 0.3-1mdk
+- don't put noreplace on these scripts
+- changes in cvs
+
+* Wed Aug 25 2004 Götz Waschk <waschk@linux-mandrake.com> 0.2-2mdk
+- mark config files
+- fix file list
+- drop prefix
+- fix buildrequires
+
 * Wed Aug 18 2004 Frederic Lepied <flepied@mandrakesoft.com> 0.2-1mdk
 - add a require on dbus
 - put temporary file in /tmp instead of /var/tmp and use a naming
   which includes the user name
+
+* Tue Aug 03 2004 Christiaan Welvaart <cjw@daneel.dyndns.org> 0.1-2mdk
+- fix buildrequires
 
 * Sat Jul 31 2004 Frederic Lepied <flepied@mandrakesoft.com> 0.1-1mdk
 - monitor hostname change
