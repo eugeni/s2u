@@ -1,3 +1,7 @@
+2005-03-09 16:30  Frederic Crozat <fcrozat@mandrakesoft.com>
+
+	* s2u.c, s2u.spec: Remove dbus-x11 dependency
+
 2005-03-09 16:08  Frederic Crozat <fcrozat@mandrakesoft.com>
 
 	* s2u.c, s2u.spec: - add new signal to start update-menus if
