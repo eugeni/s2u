@@ -1,3 +1,7 @@
+2004-08-02 01:29  Frederic Lepied <flepied@mandrakesoft.com>
+
+	* .cvsignore: first version
+
 2004-08-02 01:27  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.spec: use $RPM_OPT_FLAGS to compile C files
