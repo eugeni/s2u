@@ -1,13 +1,14 @@
 Summary: System to user tools
 Name: s2u
 Version: 0.5
-Release: 1mdk
+Release: 2mdk
 URL: http://www.mandrakelinux.com/
 Source0: %{name}-%{version}.tar.bz2
 License: GPL
 Group: Graphical desktop/Other
 BuildRoot: %{_tmppath}/%{name}-buildroot
 BuildRequires: dbus-devel
+BuildRequires: gtk+2-devel
 Requires: dbus-x11 dbus
 Requires: initscripts >= 7.06-52mdk
 
@@ -38,6 +39,9 @@ rm -rf $RPM_BUILD_ROOT
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Tue Mar 08 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-2mdk 
+- connect to X server, so s2u exits when X exits
+
 * Mon Mar 07 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-1mdk 
 - Release 0.5 :
  no longer use session bus, use system bus instead (fix Mdk bug #13166)

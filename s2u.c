@@ -50,6 +50,7 @@ static const char compile_id[] = "$Compile: " __FILE__ " " __DATE__ " " __TIME__
 #include <fcntl.h>
 #include <errno.h>
 #include <signal.h>
+#include <gdk/gdk.h>
 
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
@@ -299,7 +300,7 @@ main (int argc, char *argv[])
 
 	}
 
-	g_type_init ();
+	gdk_init(&argc, &argv);
 
 	loop = g_main_loop_new (NULL, FALSE);
 
@@ -307,6 +308,7 @@ main (int argc, char *argv[])
 	service_dbus_init ();
 
 	/* run the main loop and serve clients */
+
 	g_main_loop_run (loop);
 
 	return 0;
