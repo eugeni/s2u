@@ -1,3 +1,7 @@
+2005-03-07 17:11  Frederic Crozat <fcrozat@mandrakesoft.com>
+
+	* hostname-post: Fix recipient
+
 2005-03-07 17:04  Frederic Crozat <fcrozat@mandrakesoft.com>
 
 	* Makefile: Fix perms for config file
