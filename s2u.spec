@@ -32,7 +32,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog README AUTHORS LICENSE
 %_bindir/s2u
 /etc/X11/xinit.d/s2u.sh
-/etc/sysconfig/network-script/hostname.d/s2u
+/etc/sysconfig/network-scripts/hostname.d/s2u
 
 %changelog
 * Sat Jul 31 2004 Frederic Lepied <flepied@mandrakesoft.com> 0.1-1mdk
