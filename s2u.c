@@ -53,6 +53,7 @@ static const char compile_id[] = "$Compile: " __FILE__ " " __DATE__ " " __TIME__
 
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
+#include <dbus/dbus-glib-lowlevel.h>
 
 static DBusConnection *dbus_connection;
 static gchar *cookie = NULL;
