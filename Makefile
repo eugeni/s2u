@@ -13,15 +13,17 @@ RELEASE:=$(shell rpm -q --qf %{RELEASE} --specfile $(PACKAGE).spec)
 TAG := $(shell echo "V$(VERSION)_$(RELEASE)" | tr -- '-.' '__')
 
 FILES = Makefile README hostname-post s2u.c s2u.sh s2u.spec \
- LICENSE README ChangeLog
+ AUTHORS LICENSE README ChangeLog
 
 DEFS = -DDBUS_API_SUBJECT_TO_CHANGE=1
 CC = gcc
-CFLAGS = -Os -pipe -Wall -fomit-frame-pointer -fno-strict-aliasing
+CFLAGS = -O2 -pipe -Wall -Werror
 INCLUDES = -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include
 LDFLAGS = -ldbus-glib-1 -lglib-2.0 -ldbus-1
 
 COMPILE = $(CC) $(DEFS) $(CFLAGS)
+
+all: s2u
 
 s2u:	s2u.o
 	$(CC) $(LDFLAGS) -o $@ $^
