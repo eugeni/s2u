@@ -18,8 +18,8 @@ FILES = Makefile README hostname-post s2u.c s2u.sh s2u.spec \
 DEFS = -DDBUS_API_SUBJECT_TO_CHANGE=1
 CC = gcc
 CFLAGS = -O2 -pipe -Wall -Werror
-INCLUDES = -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include
-LDFLAGS = -ldbus-glib-1 -lglib-2.0 -ldbus-1
+INCLUDES = $(shell pkg-config dbus-glib-1 --cflags)
+LDFLAGS =  $(shell pkg-config dbus-glib-1 --libs)
 
 COMPILE = $(CC) $(DEFS) $(CFLAGS)
 
