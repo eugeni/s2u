@@ -1,6 +1,6 @@
 Summary: System to user tools
 Name: s2u
-Version: 0.3
+Version: 0.4
 Release: 1mdk
 URL: http://www.mandrakelinux.com/
 Source0: %{name}-%{version}.tar.bz2
@@ -37,6 +37,9 @@ rm -rf $RPM_BUILD_ROOT
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Mon Oct 18 2004 Gwenole Beauchesne <gbeauchesne@mandrakesoft.com> 0.4-1mdk
+- lib64 fixes
+
 * Wed Aug 25 2004 Frederic Lepied <flepied@mandrakesoft.com> 0.3-1mdk
 - don't put noreplace on these scripts
 - changes in cvs
