@@ -9,6 +9,7 @@ Group: Graphical desktop/Other
 BuildRoot: %{_tmppath}/%{name}-buildroot
 Prefix: %{_prefix}
 Requires: dbus-x11
+Requires: initscripts >= 7.06-52mdk
 
 %description
 Use dbus to communicate between from the system to the users.
@@ -28,7 +29,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc ChangeLog README AUTHORS License
+%doc ChangeLog README AUTHORS LICENSE
 %_bindir/s2u
 /etc/X11/xinit.d/s2u.sh
 /etc/sysconfig/network-script/hostname.d/s2u
