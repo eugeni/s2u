@@ -1,3 +1,8 @@
+2005-03-09 16:08  Frederic Crozat <fcrozat@mandrakesoft.com>
+
+	* s2u.c, s2u.spec: - add new signal to start update-menus if
+	  requested by system
+
 2005-03-08 17:22  Frederic Crozat <fcrozat@mandrakesoft.com>
 
 	* Makefile, s2u.c, s2u.spec: Connect to X so s2u exits when X exit
