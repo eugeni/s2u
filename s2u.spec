@@ -9,7 +9,7 @@ Group: Graphical desktop/Other
 BuildRoot: %{_tmppath}/%{name}-buildroot
 BuildRequires: dbus-devel
 BuildRequires: gtk+2-devel
-Requires: dbus-x11 dbus
+Requires: dbus
 Requires: initscripts >= 7.06-52mdk
 
 %description
@@ -41,6 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Wed Mar 09 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-3mdk 
 - add new signal to start update-menus if requested by system
+- remove dbus-x11 requires
 
 * Tue Mar 08 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-2mdk 
 - connect to X server, so s2u exits when X exits

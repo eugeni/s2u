@@ -139,6 +139,8 @@ filter_function (DBusConnection * connection,
 					 "com.mandrakesoft.user",
 					 "updatemenu")) {
 
+          g_print("updatemenu signal received\n");
+		    
 	  g_spawn_command_line_async("/etc/X11/xinit.d/menu", NULL);
 
 	  return DBUS_HANDLER_RESULT_HANDLED;
