@@ -10,6 +10,6 @@
 #                 running X11 dbus session.
 #---------------------------------------------------------------
 
-dbus-send --type=signal --dest=com.mandrakesoft.user.message /com/mandrakesoft/user com.mandrakesoft.user.message string:"Hostname: $1"
+dbus-send --system --type=signal /com/mandrakesoft/user com.mandrakesoft.user.message string:"Hostname: $1"
 
 # hostname-post ends here
