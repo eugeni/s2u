@@ -1,51 +1,73 @@
-2004-08-18 04:56  Frederic Lepied <flepied@mandrakesoft.com>
+2004-10-18 11:23  Gwenole Beauchesne <gbeauchesne@mandrakesoft.com>
+
+	* s2u.spec: 0.4-1mdk
+
+2004-10-18 11:22  Gwenole Beauchesne <gbeauchesne@mandrakesoft.com>
+
+	* Makefile: use pkgconfig to get the right includes/libs for
+	  dbus-glib-1
+
+2004-10-18 11:22  Gwenole Beauchesne <gbeauchesne@mandrakesoft.com>
+
+	* s2u.c: #include <dbus/dbus-glib-lowlevel.h> for
+	  dbus_connection_setup_with_g_main() prototype
+
+2004-08-25 01:25  Frederic Lepied <flepied@mandrakesoft.com>
+
+	* s2u.sh: use display in temp filename
+
+2004-08-25 01:24  Frederic Lepied <flepied@mandrakesoft.com>
+
+	* s2u.spec: 0.3-1mdk
+
+2004-08-17 22:56  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.spec: 0.2-1mdk
 
-2004-08-18 04:56  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-17 22:56  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* hostname-post, s2u.sh: put session file in
 	  /tmp/dbus-$USER-xsession$CURR_DISPLAY
 
-2004-08-02 01:44  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:44  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.spec: 0.1-1mdk
 
-2004-08-02 01:44  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:44  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* Makefile: network-script => network-scripts
 
-2004-08-02 01:29  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:29  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* .cvsignore: first version
 
-2004-08-02 01:27  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:27  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.spec: use $RPM_OPT_FLAGS to compile C files
 
-2004-08-02 01:27  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:27  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* Makefile: added AUTHORS
 
-2004-08-02 01:21  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:21  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.c: added ident strings
 
-2004-08-02 01:20  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:20  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.c: fixed header and strings to remove the drakxservice
 	  references
 
-2004-08-02 01:08  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 19:08  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* s2u.spec: added a dependency on initscripts
 
-2004-08-02 00:59  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 18:59  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* AUTHORS, LICENSE, Makefile, README, hostname-post, s2u.c, s2u.sh,
 	  s2u.spec: Initial revision
 
-2004-08-02 00:59  Frederic Lepied <flepied@mandrakesoft.com>
+2004-08-01 18:59  Frederic Lepied <flepied@mandrakesoft.com>
 
 	* AUTHORS, LICENSE, Makefile, README, hostname-post, s2u.c, s2u.sh,
 	  s2u.spec: initial version
