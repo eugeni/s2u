@@ -39,8 +39,8 @@ install:
 	install s2u.sh $(DESTDIR)/etc/X11/xinit.d
 	install -d $(DESTDIR)/usr/bin
 	install s2u $(DESTDIR)/usr/bin
-	install -d $(DESTDIR)/etc/sysconfig/network-script/hostname.d
-	install hostname-post $(DESTDIR)/etc/sysconfig/network-script/hostname.d/s2u
+	install -d $(DESTDIR)/etc/sysconfig/network-scripts/hostname.d
+	install hostname-post $(DESTDIR)/etc/sysconfig/network-scripts/hostname.d/s2u
 # rules to build a test rpm
 
 localrpm: localdist buildrpm
