@@ -1,3 +1,7 @@
+2005-03-07 17:04  Frederic Crozat <fcrozat@mandrakesoft.com>
+
+	* Makefile: Fix perms for config file
+
 2005-03-07 17:01  Frederic Crozat <fcrozat@mandrakesoft.com>
 
 	* Makefile, hostname-post, s2u.c, s2u.sh, s2u.spec: Release 0.5 :
