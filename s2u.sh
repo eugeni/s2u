@@ -1,6 +1,6 @@
 #!/bin/sh
 #---------------------------------------------------------------
-# Project         : Mandrakelinux
+# Project         : Mandriva Linux
 # Module          : s2u
 # File            : s2u.sh
 # Version         : $Id$
@@ -10,8 +10,6 @@
 #                   system bus
 #---------------------------------------------------------------
 
-CURR_DISPLAY=`LC_ALL=C xdpyinfo | grep 'display' | awk '{print $4}'`
-
-exec s2u --daemon=yes
+exec s2u --daemon=yes --debug
 
 # s2u.sh ends here
