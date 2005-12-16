@@ -1,6 +1,6 @@
 #!/bin/sh
 #---------------------------------------------------------------
-# Project         : Mandrakelinux
+# Project         : Mandriva Linux
 # Module          : s2u
 # File            : hostname-post
 # Version         : $Id$
@@ -10,6 +10,6 @@
 #                 running X11 dbus session.
 #---------------------------------------------------------------
 
-dbus-send --system --type=signal /com/mandrakesoft/user com.mandrakesoft.user.message string:"Hostname: $1"
+dbus-send --system --type=signal /com/mandriva/user com.mandriva.user.message string:"Hostname: $1"
 
 # hostname-post ends here
