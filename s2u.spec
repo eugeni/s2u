@@ -1,8 +1,8 @@
 Summary: System to user tools
 Name: s2u
-Version: 0.5
-Release: 3mdk
-URL: http://www.mandrakelinux.com/
+Version: 0.6
+Release: %mkrel 1
+URL: http://www.mandrivalinux.com/
 Source0: %{name}-%{version}.tar.bz2
 License: GPL
 Group: Graphical desktop/Other
@@ -39,6 +39,11 @@ rm -rf $RPM_BUILD_ROOT
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Fri Dec 16 2005 Frederic Lepied <flepied@mandriva.com> 0.6-1mdk
+- switch to Mandriva
+- log actions by default
+- mkrel
+
 * Wed Mar 09 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-3mdk 
 - add new signal to start update-menus if requested by system
 - remove dbus-x11 requires
