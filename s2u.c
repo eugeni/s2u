@@ -1,5 +1,5 @@
 /*===========================================================================
- * Project         : Mandrakelinux
+ * Project         : Mandriva Linux
  * Module          : s2u
  * File            : s2u.c
  * Version         : $Id$
@@ -11,9 +11,11 @@
 
 /***************************************************************************
  *
- * Copyright (C) 2004 Mandrakesoft
- * Stew Benedict, <sbenedict@mandrakesoft.com>
- * Frederic Lepied, <flepied@mandrakesoft.com>
+ * Copyright (C) 2004,2005 Mandrakesoft
+ * Copyright (C) 2005 Mandriva
+ *
+ * Stew Benedict, <sbenedict@mandriva.com>
+ * Frederic Lepied, <flepied@mandriva.com>
  *
  * code borrowed/adapted from the hal project - 
  * 					http://www.freedesktop.org/Software/hal
@@ -65,10 +67,11 @@ static gchar *cookie = NULL;
 static void
 usage ()
 {
-	g_printerr ("\n" "usage : s2u [--daemon=yes|no] [--help]\n");
+	g_printerr ("\n" "usage : s2u [--daemon=yes|no] [--help] [--debug]\n");
 	g_printerr (
 		 "\n"
 		 "        --daemon=yes|no    Become a daemon\n"
+		 "        --debug            Print debug informations\n"
 		 "        --help             Show this information and exit\n"
 		 "\n"
 		 "s2u monitors messages through D-BUS,\n"
@@ -78,9 +81,6 @@ usage ()
 
 /** If #TRUE, we will daemonize */
 static dbus_bool_t opt_become_daemon = FALSE;
-
-/** Run as specified username if not #NULL */
-static char *opt_run_as = NULL;
 
 static void
 die (const char *message)
@@ -112,10 +112,10 @@ filter_function (DBusConnection * connection,
 
 	/* message, interface, method */ 
 	if (dbus_message_is_signal (message,
-					 "com.mandrakesoft.user",
+					 "com.mandriva.user",
 					 "message") &&
 	    strcmp (dbus_message_get_path (message),
-		    "/com/mandrakesoft/user") == 0) {
+		    "/com/mandriva/user") == 0) {
 	  gchar* args[] = 
 	    {
 	      "/usr/X11R6/bin/xauth",
@@ -129,17 +129,17 @@ filter_function (DBusConnection * connection,
 	  args[2] = getenv("DISPLAY");
 	  args[4] = cookie;
 
-	  g_print("setting cookie to %s\n", cookie);
+	  g_print("s2u: detected hostname change; setting cookie to '%s' for %s.\n", cookie, args[2]);
 	  
 	  g_spawn_async("/", args, NULL, 0, NULL, NULL, NULL, NULL);
 
 	  return DBUS_HANDLER_RESULT_HANDLED;
 	} else { 
 	    if (dbus_message_is_signal (message,
-					 "com.mandrakesoft.user",
+					 "com.mandriva.user",
 					 "updatemenu")) {
 
-          g_print("updatemenu signal received\n");
+          g_print("s2u: updatemenu signal received.\n");
 		    
 	  g_spawn_command_line_async("/etc/X11/xinit.d/menu", NULL);
 
@@ -164,7 +164,7 @@ service_dbus_init (void)
 
          dbus_bus_add_match (dbus_connection,
                              "type='signal',"
-                             "interface='com.mandrakesoft.user'",
+                             "interface='com.mandriva.user'",
 				NULL);
 
 
@@ -177,32 +177,16 @@ int
 main (int argc, char *argv[])
 {
 	GMainLoop *loop;
-	gchar* args[] = 
-	  {
-	    "/usr/X11R6/bin/xauth",
-	    "list",
-	    NULL,
-	    NULL
-	  };
+	gchar* args[] = {
+		"/usr/X11R6/bin/xauth",
+		"list",
+		NULL,
+		NULL
+	};
 	gint in;
 	gchar result[255];
 	gchar* idx;
-
-	memset(result, 0, sizeof(result));
-	
-	args[2] = getenv("DISPLAY");
-	
-	g_spawn_async_with_pipes("/", args, NULL, 0, NULL, NULL, NULL,
-				 NULL, &in, NULL, NULL);
-	if (read(in, result, sizeof(result)) <= 0) {
-	  die("unable to read X11 cookie");
-	} else {
-	  close(in);
-	  
-	  idx = rindex(result, ' ');
-	  cookie = g_strdup(idx+1);
-	  cookie[strlen(cookie) - 1] = '\0';
-	}
+	dbus_bool_t opt_debug = FALSE;
 	
 	while (1) {
 		int c;
@@ -211,6 +195,7 @@ main (int argc, char *argv[])
 		static struct option long_options[] = {
 			{"daemon", 1, NULL, 0},
 			{"help", 0, NULL, 0},
+			{"debug", 0, NULL, 0},
 			{NULL, 0, NULL, 0}
 		};
 
@@ -235,6 +220,8 @@ main (int argc, char *argv[])
 					usage ();
 					return 1;
 				}
+			} else if (strcmp (opt, "debug") == 0) {
+				opt_debug = TRUE;
 			}
 			break;
 
@@ -245,6 +232,25 @@ main (int argc, char *argv[])
 		}
 	}
 
+	memset(result, 0, sizeof(result));
+	
+	args[2] = getenv("DISPLAY");
+	
+	g_spawn_async_with_pipes("/", args, NULL, 0, NULL, NULL, NULL,
+				 NULL, &in, NULL, NULL);
+	if (read(in, result, sizeof(result)) <= 0) {
+		die("unable to read X11 cookie");
+	} else {
+		close(in);
+		
+		idx = rindex(result, ' ');
+		cookie = g_strdup(idx+1);
+		cookie[strlen(cookie) - 1] = '\0';
+		if (opt_debug) {
+			g_print("%s: cookie for %s = '%s'\n", argv[0], args[2], cookie);
+		}	  
+	}
+	
 	if (opt_become_daemon) {
 		int child_pid;
 		int dev_null_fd;
@@ -268,8 +274,10 @@ main (int argc, char *argv[])
 			if (dev_null_fd > 0) {
 				/* attach /dev/null to stdout, stdin, stderr */
 				dup2 (dev_null_fd, 0);
-				dup2 (dev_null_fd, 1);
-				dup2 (dev_null_fd, 2);
+				if (opt_debug == FALSE) {
+				        dup2 (dev_null_fd, 1);
+					dup2 (dev_null_fd, 2);
+				}
 			}
 
 			umask (022);
@@ -283,33 +291,6 @@ main (int argc, char *argv[])
 
 		/* Create session */
 		setsid ();
-	}
-
-	if (opt_run_as != NULL) {
-		uid_t uid;
-		gid_t gid;
-		struct passwd *pw;
-
-
-		if ((pw = getpwnam (opt_run_as)) == NULL) {
-			g_printerr ("Could not lookup user %s, errno=%d",
-				    opt_run_as, errno);
-			exit (1);
-		}
-
-		uid = pw->pw_uid;
-		gid = pw->pw_gid;
-
-		if (setgid (gid) < 0) {
-			g_printerr("Failed to set GID to %d, errno=%d", gid, errno);
-			exit (1);
-		}
-
-		if (setuid (uid) < 0) {
-			g_printerr ("Failed to set UID to %d, errno=%d", uid, errno);
-			exit (1);
-		}
-
 	}
 
 	gdk_init(&argc, &argv);
