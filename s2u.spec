@@ -44,6 +44,12 @@ rm -rf $RPM_BUILD_ROOT
 - log actions by default
 - mkrel
 
+* Wed Jan 25 2006 Frederic Crozat <fcrozat@mandriva.com> 0.5-5mdk
+- Rebuild for latest dbus
+
+* Fri Oct 28 2005 Frederic Crozat <fcrozat@mandriva.com> 0.5-4mdk
+- Rebuild with new dbus
+
 * Wed Mar 09 2005 Frederic Crozat <fcrozat@mandrakesoft.com> 0.5-3mdk 
 - add new signal to start update-menus if requested by system
 - remove dbus-x11 requires
