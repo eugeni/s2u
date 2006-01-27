@@ -1,126 +1,135 @@
-2005-12-16 09:27  Frederic Lepied <flepied at mandriva.com>
+2006-01-27 22:54  Thierry Vignaud <tvignaud at mandriva.com>
+
+	* s2u.spec: bump 0.6-1mdk's date in order to make it acceptable by
+	  rpm
+
+2006-01-27 22:52  Thierry Vignaud <tvignaud at mandriva.com>
+
+	* s2u.spec: merge in changes done in cooker and not in CVS
+
+2005-12-16 15:27  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.spec: 0.6-1mdk
 
-2005-12-16 09:26  Frederic Lepied <flepied at mandriva.com>
+2005-12-16 15:26  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.sh: - removed unneeded code - launch with debug
 
-2005-12-16 09:25  Frederic Lepied <flepied at mandriva.com>
+2005-12-16 15:25  Frederic Lepied <flepied at mandriva.com>
 
 	* hostname-post, s2u.conf, AUTHORS: Mandriva
 
-2005-12-16 09:25  Frederic Lepied <flepied at mandriva.com>
+2005-12-16 15:25  Frederic Lepied <flepied at mandriva.com>
 
 	* Makefile: fixed version/release parsing
 
-2005-12-16 09:24  Frederic Lepied <flepied at mandriva.com>
+2005-12-16 15:24  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.c: - added --debug option - removed dead code for opt_run_as
 	  - Mandriva
 
-2005-03-09 10:30  Frederic Crozat <fcrozat at mandriva.com>
+2005-03-09 16:30  Frederic Crozat <fcrozat at mandriva.com>
 
 	* s2u.c, s2u.spec: Remove dbus-x11 dependency
 
-2005-03-09 10:08  Frederic Crozat <fcrozat at mandriva.com>
+2005-03-09 16:08  Frederic Crozat <fcrozat at mandriva.com>
 
 	* s2u.c, s2u.spec: - add new signal to start update-menus if
 	  requested by system
 
-2005-03-08 11:22  Frederic Crozat <fcrozat at mandriva.com>
+2005-03-08 17:22  Frederic Crozat <fcrozat at mandriva.com>
 
 	* Makefile, s2u.c, s2u.spec: Connect to X so s2u exits when X exit
 
-2005-03-07 11:11  Frederic Crozat <fcrozat at mandriva.com>
+2005-03-07 17:11  Frederic Crozat <fcrozat at mandriva.com>
 
 	* hostname-post: Fix recipient
 
-2005-03-07 11:04  Frederic Crozat <fcrozat at mandriva.com>
+2005-03-07 17:04  Frederic Crozat <fcrozat at mandriva.com>
 
 	* Makefile: Fix perms for config file
 
-2005-03-07 11:01  Frederic Crozat <fcrozat at mandriva.com>
+2005-03-07 17:01  Frederic Crozat <fcrozat at mandriva.com>
 
 	* Makefile, hostname-post, s2u.c, s2u.sh, s2u.spec: Release 0.5 :
 	  no longer use session bus, use system bus instead (fix Mdk bug
 	  #13166)
 
-2005-03-03 13:49  Frederic Crozat <fcrozat at mandriva.com>
+2005-03-03 19:49  Frederic Crozat <fcrozat at mandriva.com>
 
 	* s2u.conf: Configuration to restrict s2u message to root only on
 	  system bus
 
-2004-10-18 11:23  Gwenole Beauchesne <gbeauchesne at mandriva.com>
+2004-10-18 17:23  Gwenole Beauchesne <gbeauchesne at mandriva.com>
 
 	* s2u.spec: 0.4-1mdk
 
-2004-10-18 11:22  Gwenole Beauchesne <gbeauchesne at mandriva.com>
+2004-10-18 17:22  Gwenole Beauchesne <gbeauchesne at mandriva.com>
 
 	* Makefile: use pkgconfig to get the right includes/libs for
 	  dbus-glib-1
 
-2004-10-18 11:22  Gwenole Beauchesne <gbeauchesne at mandriva.com>
+2004-10-18 17:22  Gwenole Beauchesne <gbeauchesne at mandriva.com>
 
 	* s2u.c: #include <dbus/dbus-glib-lowlevel.h> for
 	  dbus_connection_setup_with_g_main() prototype
 
-2004-08-25 01:25  Frederic Lepied <flepied at mandriva.com>
+2004-08-25 07:25  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.sh: use display in temp filename
 
-2004-08-25 01:24  Frederic Lepied <flepied at mandriva.com>
+2004-08-25 07:24  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.spec: 0.3-1mdk
 
-2004-08-17 22:56  Frederic Lepied <flepied at mandriva.com>
+2004-08-18 04:56  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.spec: 0.2-1mdk
 
-2004-08-17 22:56  Frederic Lepied <flepied at mandriva.com>
+2004-08-18 04:56  Frederic Lepied <flepied at mandriva.com>
 
 	* hostname-post, s2u.sh: put session file in
 	  /tmp/dbus-$USER-xsession$CURR_DISPLAY
 
-2004-08-01 19:44  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:44  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.spec: 0.1-1mdk
 
-2004-08-01 19:44  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:44  Frederic Lepied <flepied at mandriva.com>
 
 	* Makefile: network-script => network-scripts
 
-2004-08-01 19:29  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:29  Frederic Lepied <flepied at mandriva.com>
 
 	* .cvsignore: first version
 
-2004-08-01 19:27  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:27  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.spec: use $RPM_OPT_FLAGS to compile C files
 
-2004-08-01 19:27  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:27  Frederic Lepied <flepied at mandriva.com>
 
 	* Makefile: added AUTHORS
 
-2004-08-01 19:21  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:21  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.c: added ident strings
 
-2004-08-01 19:20  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:20  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.c: fixed header and strings to remove the drakxservice
 	  references
 
-2004-08-01 19:08  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 01:08  Frederic Lepied <flepied at mandriva.com>
 
 	* s2u.spec: added a dependency on initscripts
 
-2004-08-01 18:59  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 00:59  Frederic Lepied <flepied at mandriva.com>
 
 	* AUTHORS, LICENSE, Makefile, README, hostname-post, s2u.c, s2u.sh,
 	  s2u.spec: Initial revision
 
-2004-08-01 18:59  Frederic Lepied <flepied at mandriva.com>
+2004-08-02 00:59  Frederic Lepied <flepied at mandriva.com>
 
 	* AUTHORS, LICENSE, Makefile, README, hostname-post, s2u.c, s2u.sh,
 	  s2u.spec: initial version
