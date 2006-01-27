@@ -39,7 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
-* Fri Dec 16 2005 Frederic Lepied <flepied@mandriva.com> 0.6-1mdk
+* Fri Jan 27 2006 Frederic Lepied <flepied@mandriva.com> 0.6-1mdk
 - switch to Mandriva
 - log actions by default
 - mkrel
