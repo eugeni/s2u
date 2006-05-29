@@ -1,3 +1,7 @@
+2006-05-29 14:29  Frederic Crozat <fcrozat at mandriva.com>
+
+	* Makefile, s2u.c, s2u.spec: - Fix for modular xorg
+
 2006-01-27 22:54  Thierry Vignaud <tvignaud at mandriva.com>
 
 	* s2u.spec: bump 0.6-1mdk's date in order to make it acceptable by
