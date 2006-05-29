@@ -242,8 +242,11 @@ main (int argc, char *argv[])
 		die("unable to read X11 cookie");
 	} else {
 		close(in);
-		
+
 		idx = rindex(result, ' ');
+		if (idx == NULL) {
+			die ("unable to read X11 cookie");
+		}
 		cookie = g_strdup(idx+1);
 		cookie[strlen(cookie) - 1] = '\0';
 		if (opt_debug) {
