@@ -41,6 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Mon May 29 2006 Frederic Crozat <fcrozat@mandriva.com> 0.7-1mdv2007.0
 - Fix for modular xorg
+- Fix crash when parsing cookie fails
 
 * Fri Jan 27 2006 Frederic Lepied <flepied@mandriva.com> 0.6-1mdk
 - switch to Mandriva
