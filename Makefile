@@ -9,7 +9,7 @@
 
 PACKAGE=s2u
 VERSION:=$(shell rpm -q --qf '%{VERSION}\n' --specfile $(PACKAGE).spec | head -1)
-RELEASE:=$(shell rpm -q --qf '%{RELEASE}\n' --specfile $(PACKAGE).spec | head -1)
+RELEASE:=$(shell rpm -q --qf '%{RELEASE}\n' --specfile $(PACKAGE).spec | head -1| sed -e 's/%mkrel \(.*\)/\1mdv/g')
 TAG := $(shell echo "V$(VERSION)_$(RELEASE)" | tr -- '-.' '__')
 
 FILES = Makefile README hostname-post s2u.c s2u.sh s2u.spec \

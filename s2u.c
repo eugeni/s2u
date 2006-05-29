@@ -118,7 +118,7 @@ filter_function (DBusConnection * connection,
 		    "/com/mandriva/user") == 0) {
 	  gchar* args[] = 
 	    {
-	      "/usr/X11R6/bin/xauth",
+	      "/usr/bin/xauth",
 	      "add",
 	      NULL,
 	      ".",
@@ -178,7 +178,7 @@ main (int argc, char *argv[])
 {
 	GMainLoop *loop;
 	gchar* args[] = {
-		"/usr/X11R6/bin/xauth",
+		"/usr/bin/xauth",
 		"list",
 		NULL,
 		NULL

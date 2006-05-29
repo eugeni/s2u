@@ -1,6 +1,6 @@
 Summary: System to user tools
 Name: s2u
-Version: 0.6
+Version: 0.7
 Release: %mkrel 1
 URL: http://www.mandrivalinux.com/
 Source0: %{name}-%{version}.tar.bz2
@@ -39,6 +39,9 @@ rm -rf $RPM_BUILD_ROOT
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Mon May 29 2006 Frederic Crozat <fcrozat@mandriva.com> 0.7-1mdv2007.0
+- Fix for modular xorg
+
 * Fri Jan 27 2006 Frederic Lepied <flepied@mandriva.com> 0.6-1mdk
 - switch to Mandriva
 - log actions by default
