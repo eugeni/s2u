@@ -1,3 +1,11 @@
+2006-05-29 16:19  Frederic Crozat <fcrozat at mandriva.com>
+
+	* s2u.spec: Prevent crash when parsing cookie fails
+
+2006-05-29 16:19  Frederic Crozat <fcrozat at mandriva.com>
+
+	* s2u.c: Prevent crash when parsing cookie fail
+
 2006-05-29 14:29  Frederic Crozat <fcrozat at mandriva.com>
 
 	* Makefile, s2u.c, s2u.spec: - Fix for modular xorg
