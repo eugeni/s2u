@@ -1,7 +1,7 @@
 Summary: System to user tools
 Name: s2u
 Version: 0.7
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://www.mandrivalinux.com/
 Source0: %{name}-%{version}.tar.bz2
 License: GPL
@@ -39,6 +39,9 @@ rm -rf $RPM_BUILD_ROOT
 # MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Tue Aug 01 2006 Frederic Crozat <fcrozat@mandriva.com> 0.7-2mdv2007.0
+- Rebuild with latest dbus
+
 * Mon May 29 2006 Frederic Crozat <fcrozat@mandriva.com> 0.7-1mdv2007.0
 - Fix for modular xorg
 - Fix crash when parsing cookie fails
