@@ -1,3 +1,7 @@
+2006-08-01 11:20  Frederic Crozat <fcrozat at mandriva.com>
+
+	* s2u.spec: Rebuild with latest dbus
+
 2006-05-29 16:19  Frederic Crozat <fcrozat at mandriva.com>
 
 	* s2u.spec: Prevent crash when parsing cookie fails
