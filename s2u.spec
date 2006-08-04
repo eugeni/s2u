@@ -1,13 +1,13 @@
 Summary: System to user tools
 Name: s2u
 Version: 0.7
-Release: %mkrel 2
+Release: %mkrel 3
 URL: http://www.mandrivalinux.com/
 Source0: %{name}-%{version}.tar.bz2
 License: GPL
 Group: Graphical desktop/Other
 BuildRoot: %{_tmppath}/%{name}-buildroot
-BuildRequires: dbus-devel
+BuildRequires: dbus-glib-devel
 BuildRequires: gtk+2-devel
 Requires: dbus
 Requires: initscripts >= 7.06-52mdk
@@ -36,9 +36,12 @@ rm -rf $RPM_BUILD_ROOT
 %_sysconfdir/sysconfig/network-scripts/hostname.d/s2u
 %config(noreplace) %_sysconfdir/dbus-1/system.d/*.conf
 
-# MAKE THE CHANGES IN CVS: NO PATCH OR SOURCE ALLOWED
+# MAKE THE CHANGES IN SVN: NO PATCH OR SOURCE ALLOWED
 
 %changelog
+* Fri Aug 04 2006 Frederic Crozat <fcrozat@mandriva.com> 0.7-3mdv2007.0
+- Fix buildrequires
+
 * Tue Aug 01 2006 Frederic Crozat <fcrozat@mandriva.com> 0.7-2mdv2007.0
 - Rebuild with latest dbus
 
