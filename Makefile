@@ -9,6 +9,8 @@
 
 PACKAGE=s2u
 TAG := $(shell echo "V$(VERSION)_$(RELEASE)" | tr -- '-.' '__')
+SVNROOT = svn+ssh://svn.mandriva.com/svn/soft/$(PACKAGE)
+
 
 FILES = Makefile README hostname-post s2u.c s2u.sh \
  AUTHORS LICENSE README ChangeLog s2u.conf
