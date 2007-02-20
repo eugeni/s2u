@@ -34,7 +34,7 @@ clean:
 
 install:
 	install -d $(DESTDIR)/etc/X11/xinit.d
-	install s2u.sh $(DESTDIR)/etc/X11/xinit.d/99s2u
+	install s2u.sh $(DESTDIR)/etc/X11/xinit.d/s2u
 	install -d $(DESTDIR)/usr/bin
 	install s2u $(DESTDIR)/usr/bin
 	install -d $(DESTDIR)/etc/sysconfig/network-scripts/hostname.d
