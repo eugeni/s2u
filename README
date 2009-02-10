@@ -7,4 +7,4 @@ waits then for dbus messages to take the appropriate actions. The
 implemented actions are:
 
  o react to hostname changes to continue to have a working X11 session.
- 
+ o run update-menus if requested by the system
