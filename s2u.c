@@ -11,11 +11,12 @@
 
 /***************************************************************************
  *
- * Copyright (C) 2004,2005 Mandrakesoft
+ * Copyright (C) 2004,2005,2009 Mandrakesoft
  * Copyright (C) 2005 Mandriva
  *
  * Stew Benedict, <sbenedict@mandriva.com>
  * Frederic Lepied, <flepied@mandriva.com>
+ * Eugeni Dodonov <eugeni@mandriva.com>
  *
  * code borrowed/adapted from the hal project -
  *                  http://www.freedesktop.org/Software/hal
@@ -53,6 +54,7 @@ static const char compile_id[] = "$Compile: " __FILE__ " " __DATE__ " " __TIME__
 #include <errno.h>
 #include <signal.h>
 #include <gdk/gdk.h>
+#include <libnotify/notify.h>
 
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
@@ -60,6 +62,7 @@ static const char compile_id[] = "$Compile: " __FILE__ " " __DATE__ " " __TIME__
 
 static DBusConnection *dbus_connection;
 static gchar *cookie = NULL;
+static NotifyNotification *n;
 
 /** Print out program usage.
  *
@@ -134,8 +137,7 @@ filter_function (DBusConnection * connection,
       g_spawn_async("/", args, NULL, 0, NULL, NULL, NULL, NULL);
 
       return DBUS_HANDLER_RESULT_HANDLED;
-    } else {
-        if (dbus_message_is_signal (message,
+    } else if (dbus_message_is_signal (message,
                      "com.mandriva.user",
                      "updatemenu")) {
 
@@ -144,8 +146,29 @@ filter_function (DBusConnection * connection,
       g_spawn_command_line_async("/etc/X11/xinit.d/menu", NULL);
 
       return DBUS_HANDLER_RESULT_HANDLED;
+    } else if (dbus_message_is_signal (message,
+                     "com.mandriva.user",
+                     "security_notification")) {
+        /* msec */
+        char *string;
+        DBusError error;
+        dbus_error_init(&error);
+        if (dbus_message_get_args (message,
+                    &error,
+                    DBUS_TYPE_STRING, &string,
+                    DBUS_TYPE_INVALID)) {
+            n = notify_notification_new("MSEC", string, GTK_STOCK_INFO, NULL);
+            if (!notify_notification_show (n, NULL)) {
+                g_printerr("notify_notification_show: failed to show notification\n");
+            }
+            g_object_unref(G_OBJECT(n));
         }
-    else
+        else {
+            fprintf (stderr, "an error occurred: %s\n", error.message);
+        }
+        dbus_error_free(&error);
+        return DBUS_HANDLER_RESULT_HANDLED;
+    } else {
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
     }
 }
@@ -297,6 +320,9 @@ main (int argc, char *argv[])
     }
 
     gdk_init(&argc, &argv);
+
+    /* init libnotify */
+    notify_init("s2u");
 
     loop = g_main_loop_new (NULL, FALSE);
 
