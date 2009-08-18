@@ -9,3 +9,4 @@ implemented actions are:
  o react to hostname changes to continue to have a working X11 session.
  o run update-menus if requested by the system
  o display msec notifications
+ o display custom notifications (netprofile, ...)

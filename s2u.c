@@ -168,6 +168,29 @@ filter_function (DBusConnection * connection,
         }
         dbus_error_free(&error);
         return DBUS_HANDLER_RESULT_HANDLED;
+    } else if (dbus_message_is_signal (message,
+                     "com.mandriva.user",
+                     "custom_notification")) {
+        /* msec */
+        char *string, *title;
+        DBusError error;
+        dbus_error_init(&error);
+        if (dbus_message_get_args (message,
+                    &error,
+                    DBUS_TYPE_STRING, &title,
+                    DBUS_TYPE_STRING, &string,
+                    DBUS_TYPE_INVALID)) {
+            n = notify_notification_new(title, string, GTK_STOCK_INFO, NULL);
+            if (!notify_notification_show (n, NULL)) {
+                g_printerr("notify_notification_show: failed to show notification\n");
+            }
+            g_object_unref(G_OBJECT(n));
+        }
+        else {
+            fprintf (stderr, "an error occurred: %s\n", error.message);
+        }
+        dbus_error_free(&error);
+        return DBUS_HANDLER_RESULT_HANDLED;
     } else {
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
     }
