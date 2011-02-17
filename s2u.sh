@@ -10,6 +10,6 @@
 #                   system bus
 #---------------------------------------------------------------
 
-exec s2u --daemon=yes 
+s2u --daemon=yes
 
 # s2u.sh ends here
